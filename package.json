@@ -4,9 +4,9 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "nodemon ./src/index.ts",
+    "start": "npm run build && node ./dist/index.js",
     "seed": "ts-node ./src/mongo/seed.ts",
-    "dev": "npm run build && npm start",
+    "dev": "nodemon ./src/index.ts",
     "test": "jest --coverage",
     "build": "tsc"
   },
