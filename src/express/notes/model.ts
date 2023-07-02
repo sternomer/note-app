@@ -1,22 +1,28 @@
-import { model, Schema } from "mongoose";
-import envConfig from "../../config/env.config";
+import { model, Schema, Document, ObjectId } from "mongoose";
 
-const noteSchema = new Schema({
-  content: {
-    type: String,
-    required: true,
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  timeStamps: {
-    createdAt: true,
-    updatedAt: true,
-  },
-  versionKey: false,
-});
+interface INote extends Document {
+  _id: ObjectId;
+  content: String;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-const noteModel = model('note', noteSchema);
+const noteSchema = new Schema<INote>(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: {
+      createdAt: true,
+      updatedAt: true,
+    },
+    versionKey: false,
+  }
+);
+
+const noteModel = model<INote>('note', noteSchema);
 
 export default noteModel;

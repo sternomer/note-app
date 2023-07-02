@@ -1,34 +1,34 @@
 import noteModel from "./model";
 
-export const createNote = async (userId: String, note: string) => {
+export const createNote = async (note: any) => {
   try {
     return noteModel.create({
       content: note,
-      user: userId,
     });
   } catch (err) {
-    console.log(err);
+    throw new Error(`cannot create ${err}`);
   }
 };
 
 export const getNote = async (id: string) => {
-  const note = await noteModel.findById({ _id: id }).exec();  // byId(id) without obj , remove exec
+  const note = await noteModel.findById(id);
   if (note) return note.content;
-  console.log("cannot find note"); // throw error catch in the error handler
-  return;
+  throw new Error("cannot get note");
 };
 
-export const updateNote = async (id: string, body: string) => {// body => content
-  const updatedNote = await noteModel
-    .findByIdAndUpdate({ _id: id }, { content: body })
-    .exec();
+export const updateNote = async (id: string, content: string) => {
+  // body => content
+  const updatedNote = await noteModel.findByIdAndUpdate(
+    { _id: id },
+    { content }
+  );
+  console.log(updatedNote);
+
   if (updatedNote) return updateNote;
-  console.log("cannot find note");
-  return;
+  throw new Error("cannot update note");
 };
 
 export const deleteNote = async (id: string) => {
-  return await noteModel
-    .deleteOne({ id })
-    .catch((err) => console.log("cannot delete note"));
+  const deleted = await noteModel.deleteOne({ id });
+  if (!deleted) throw new Error("cannot delete");
 };

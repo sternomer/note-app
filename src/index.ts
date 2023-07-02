@@ -6,6 +6,7 @@ const { port, mongo } = config;
 
 const initializeMongo = async () => {
   console.log("Connecting to mongo");
+  console.log(mongo);
 
   mongoose.set("strictQuery", true);
   await mongoose.connect(mongo.uri);
