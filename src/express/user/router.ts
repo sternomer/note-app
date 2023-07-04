@@ -5,8 +5,6 @@ import { ValidateRequest, wrapMiddleware } from "../utils/joi";
 
 const userRouter = express.Router();
 
-userRouter.post("/login", wrapMiddleware(userController.login));
-
 userRouter.post(
   "/",
   ValidateRequest(userValidator.createUserSchema),
@@ -17,6 +15,12 @@ userRouter.get(
   ValidateRequest(userValidator.getUserSchema),
   wrapMiddleware(userController.getUser)
 );
+userRouter.get(
+  "/id/:id",
+  ValidateRequest(userValidator.getUserSchema),
+  wrapMiddleware(userController.getUserById)
+);
+
 userRouter.patch("/:id", wrapMiddleware(userController.updateUser));
 userRouter.delete(
   "/:id",

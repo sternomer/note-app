@@ -1,16 +1,4 @@
-import { createToken } from "../../jwt/create";
 import userModel from "./model";
-
-export const login = async (userId: string) => {
-  try {
-    const user = await getUser(userId);
-    if (!user) throw new Error("cannot find unathorized");
-    const token = createToken(userId);
-    return token;
-  } catch (err) {
-    throw new Error(`cannot login ${err}`);
-  }
-};
 
 export const createUser = async (username: string, password: string) => {
   try {
@@ -21,13 +9,20 @@ export const createUser = async (username: string, password: string) => {
 };
 
 export const getUser = async (username: string) => {
-    console.log(username);
-    
+  console.log(username);
+
   const user = await userModel.findOne({ username });
   console.log(username);
 
   console.log(user);
 
+  if (user) return user;
+  throw new Error("cannot get user");
+};
+
+export const getUserById = async (id: string) => {
+  const user = await userModel.findById(id);
+  console.log(user);
   if (user) return user;
   throw new Error("cannot get user");
 };

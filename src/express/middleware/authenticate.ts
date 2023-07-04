@@ -1,22 +1,18 @@
-import { NextFunction, Request, Response } from 'express';
-import { verifyToken } from '../../jwt/verify';
+import { NextFunction, Request, Response } from "express";
+import { verifyToken } from "../../jwt/verify";
 
-
-
-export const isAuthenticate = (req: Request, res: Response, next: NextFunction) => {
+export const isAuthenticate = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const token: string = req.headers.authorization as string;
 
-  console.log(token, 'token');
-  console.log(verifyToken(token!), 'verifyToken');
-  
-  
   try {
-    const user = verifyToken(token!);
-    req.body.userFromToken = user;
-
+    verifyToken(token);
 
     next();
   } catch (error) {
-    res.status(401).send({ message: 'unauthorized' });
+    res.status(401).send({ message: "unauthorized" });
   }
 };
