@@ -1,4 +1,4 @@
-import './dotenv';
+import "./dotenv";
 import * as env from "env-var";
 
 export default {
@@ -8,5 +8,8 @@ export default {
     collection: {
       note: env.get("MONGO_COLLECTION_NOTE").required().asString,
     },
+  },
+  jwt: {
+    secret: env.get("JWT_SECRET").required().asString(),
   },
 };
