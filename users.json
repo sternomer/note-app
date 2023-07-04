@@ -1,43 +1,53 @@
  
  [
     {
-        "username": "Leanne Graham",
+        "username": "Leanne Graham",  
+        "password": "Bret",
         "note": 0
     },
     {
         "username": "Ervin Howell",
+        "password":"1212122",     
         "note": 0
     },
     {
         "username": "Clementine Bauch",
+        "password":"1212122",
         "note": 0
     },
     {
         "username": "Patricia Lebsack",
+        "password":"1212122",
         "note": 0
     },
     {
         "username": "Chelsey Dietrich",
+        "password":"1212122",
         "note": 0
     },
     {
-        "username": "Mrs. Dennis Schulist",
+        "username": "Mrs. Dennis Schuli",
+        "password":"1212122",
         "note": 0
     },
     {
         "username": "Kurtis Weissnat",
+        "password":"1212122",        
         "note": 0
     },
     {
-        "username": "Nicholas Runolfsdottir V",
+        "username": "Nicholas Runolfsdo",
+        "password":"1212122",
         "note": 0
     },
     {
         "username": "Glenna Reichert",
+        "password":"1212122",        
         "note": 0
     },
     {
         "username": "Clementina DuBuque",
+        "password":"1212122",
         "note": 0
     }
  ]

@@ -4,7 +4,8 @@ export const createUserSchema = Joi.object({
     query: {},
     params: {},
     body: {
-        name: Joi.string().required(),   
+        username: Joi.string().required(),
+        password: Joi.string().required(),   
     }
 })
 

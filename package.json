@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "start": "npm run build && node ./dist/index.js",
-    "seed": "ts-node ./src/mongo/seed.ts",
+    "seed": "ts-node ./src/seed.ts",
     "dev": "nodemon ./src/index.ts",
     "test": "jest --coverage",
     "build": "tsc"

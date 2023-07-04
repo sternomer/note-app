@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import notesRouter from "./notes/router";
 import userRouter from "./user/router";
+import loginRouter from "./login/router";
 // import { isAuthenticate } from "./middleware/authenticate";
 
 export const app = express();
@@ -11,6 +12,8 @@ app.use(morgan("dev"));
 app.use(cors());
 
 
+
+app.use("/api/login", loginRouter);
 // app.use(isAuthenticate);
 
 app.use("/api/notes", notesRouter);

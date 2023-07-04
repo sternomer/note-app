@@ -2,23 +2,19 @@ import { createToken } from "../../jwt/create";
 import userModel from "./model";
 
 export const login = async (userId: string) => {
-    try {
-        const user = await getUser(userId);
-        if (!user) throw new Error("cannot find unathorized");
-        const token = createToken(userId);
-        return token;
-    } catch (err) {
-        throw new Error(`cannot login ${err}`);
-    }
-};
-    
-
-
-export const createUser = async (username: string) => {
   try {
-    return userModel.create({
-      username,
-    });
+    const user = await getUser(userId);
+    if (!user) throw new Error("cannot find unathorized");
+    const token = createToken(userId);
+    return token;
+  } catch (err) {
+    throw new Error(`cannot login ${err}`);
+  }
+};
+
+export const createUser = async (user: string) => {
+  try {
+    return userModel.create({ user });
   } catch (err) {
     throw new Error(`cannot create ${err}`);
   }
@@ -26,7 +22,7 @@ export const createUser = async (username: string) => {
 
 export const getUser = async (id: string) => {
   const user = await userModel.findById(id);
-  if (user) return user.username;
+  if (user) return user;
   throw new Error("cannot get user");
 };
 
@@ -43,7 +39,6 @@ export const updateUser = async (id: string, note: number) => {
 };
 
 export const deleteUser = async (id: string) => {
-    const deleted = await userModel.deleteOne({ id });
-    if (!deleted) throw new Error("cannot delete");
-    }
-    
+  const deleted = await userModel.deleteOne({ id });
+  if (!deleted) throw new Error("cannot delete");
+};

@@ -2,10 +2,11 @@ import { model, Schema, Document, ObjectId } from "mongoose";
 
 
 
-interface IUser extends Document {
+export interface IUser extends Document {
   _id: ObjectId;
   username: String;
   notes: number
+  password: String;
 }
 
 const userSchema = new Schema<IUser>({
@@ -13,6 +14,10 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
+    password: {
+    type: String,
+    required: true,
+},
     notes: {
     type: Number,
     default: 0,
