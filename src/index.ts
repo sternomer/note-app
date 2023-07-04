@@ -1,27 +1,21 @@
-import mongoose, { ConnectOptions } from "mongoose";
 import app from "./express/router";
+import mongoose from "mongoose";
 import config from "./config/env.config";
 
 const { port, mongo } = config;
 
-const options: ConnectOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+
+
+const initializeMongo = async () => {
+  console.log("Connecting to Mongo...");
+  mongoose.set('strictQuery', true);
+  await mongoose.connect(mongo.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  console.log("Mongo connected");
+  
 };
-
-const conn = mongoose.createConnection(mongo.uri, options);
-
-export const connect = async (uri: string) => {
-  console.log("Connecting to mongo");
-  await conn.openUri(uri, options);
-  console.log("info", "Mongo connection established");
-};
-
 
 const main = async () => {
-  await connect(mongo.uri);
+  await initializeMongo();
 
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

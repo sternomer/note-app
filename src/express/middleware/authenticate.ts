@@ -5,10 +5,15 @@ import { verifyToken } from '../../jwt/verify';
 
 export const isAuthenticate = (req: Request, res: Response, next: NextFunction) => {
   const token: string = req.headers.authorization as string;
+
+  console.log(token, 'token');
+  console.log(verifyToken(token!), 'verifyToken');
+  
+  
   try {
     const user = verifyToken(token!);
-
     req.body.userFromToken = user;
+
 
     next();
   } catch (error) {

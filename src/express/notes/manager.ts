@@ -15,7 +15,7 @@ export const createNote = async (userId: string, note: any) => {
 
 export const getNote = async (id: string) => {
   const note = await noteModel.findById(id);
-  if (note) return note.content;
+  if (note) return note;
   throw new Error("cannot get note");
 };
 

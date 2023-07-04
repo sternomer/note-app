@@ -12,16 +12,22 @@ export const login = async (userId: string) => {
   }
 };
 
-export const createUser = async (user: string) => {
+export const createUser = async (username: string, password: string) => {
   try {
-    return userModel.create({ user });
+    return userModel.create({ username, password });
   } catch (err) {
     throw new Error(`cannot create ${err}`);
   }
 };
 
-export const getUser = async (id: string) => {
-  const user = await userModel.findById(id);
+export const getUser = async (username: string) => {
+    console.log(username);
+    
+  const user = await userModel.findOne({ username });
+  console.log(username);
+
+  console.log(user);
+
   if (user) return user;
   throw new Error("cannot get user");
 };

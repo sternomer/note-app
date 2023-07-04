@@ -6,7 +6,7 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  res.json(await userManager.createUser(req.body));
+  res.json(await userManager.createUser(req.body.username, req.body.password));
 };
 
 export const getUser = async (req: Request, res: Response) => {
